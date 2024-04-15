@@ -28,7 +28,7 @@ function Productos() {
     return (
         <Fragment>
             <h2>Productos</h2>
-            <Link to={"/nuevo-cliente"} class="btn btn-verde nvo-cliente"><i class="fas fa-plus-circle"></i>
+            <Link to={"/nuevo-producto"} class="btn btn-verde nvo-cliente"><i class="fas fa-plus-circle"></i>
                 Nuevo Producto
             </Link>
 
@@ -36,18 +36,19 @@ function Productos() {
                 {productos.map(producto =>
                     <li class="alumno">
                         <div class="info-cliente">
-                            <p class="nombre">{producto.nombre}</p>
-                            <p>{producto.descripcion}</p>
-                            <img src={producto.imagen} alt="Imagen del producto" />
+                            <p class="nombre">{"Nombre: " + producto.nombre}</p>
+                            <p>{"Descripcion: " + producto.descripcion}</p>
+                            <p>{"Precio: $ " + producto.precio}</p>
+                            {/* <img src={producto.imagen} alt="Imagen del producto" /> */}
                         </div>
                         <div class="acciones">
-                            <a href="#" class="btn btn-azul">
-                                <i class="fas fa-pen-alt"></i>
-                                Editar Cliente
-                            </a>
+                            <Link to={"/editar-producto/"+ producto.id_producto} className="btn btn-azul">
+                                <i className="fas fa-pen-alt"></i>
+                                Editar Producto
+                            </Link>
                             <button type="button" class="btn btn-rojo btn-eliminar" onClick={() => deleteProducto(producto.id_producto)}>
                                 <i class="fas fa-times"></i>
-                                Eliminar Cliente
+                                Eliminar Producto
                             </button>
                         </div>
                     </li>

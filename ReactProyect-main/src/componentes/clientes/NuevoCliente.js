@@ -3,24 +3,14 @@ import ClienteAxios from '../../config/axios';
 
 function NuevoCliente(){
     
-    const[pedidos, guardarCarrera] =useState ([]);
-    const ConsultarAPI = async() => {
-        const CarreraConsulta = await ClienteAxios.get('/pedidos');
     
-        guardarCarrera(CarreraConsulta.data);
-        console.log(pedidos);
-    
-    }
-    useEffect ( ()=>{
-        ConsultarAPI();
-    },[]);
 
     //s
     const [cliente, guardarClientes] = useState({
         "action":"insert",
-        "nombre":"",
-        "correo":"",
-        "direccion":""
+        "usuario":"",
+        "direccion":"",
+        "celular":""
     });
 
     const actualizarState = e =>{
@@ -33,12 +23,12 @@ function NuevoCliente(){
 
     const AgregarCliente = e =>{
         e.preventDefault();
-        ClienteAxios.post('/clientes', cliente).then(res=>{alert("Cliente Guardado");window.location.reload();console.log(res)});
+        ClienteAxios.post('/cliente', cliente).then(res=>{alert("Cliente Guardado");window.location.reload();console.log(res)});
     }
 
     const validarCliente = ()=>{
-        const{nombre,correo,direccion} = cliente;
-        let valido = !nombre.length || !correo.length || !direccion.length;
+        const{usuario,direccion,celular} = cliente;
+        let valido = !usuario.length || !direccion.length || !celular.length;
         return valido;
     }
 
@@ -52,18 +42,18 @@ function NuevoCliente(){
                 <legend>Llena todos los campos</legend>
 
                 <div class="campo">
-                    <label>Nombre:</label>
-                    <input type="text" placeholder="Nombre Cliente" name="nombre" onChange={actualizarState}/>
+                    <label>ID de Cliete:</label>
+                    <input type="number" placeholder="ID cliente" name="usuario" onChange={actualizarState}/>
                 </div>
             
                 <div class="campo">
-                    <label>Correo:</label>
-                    <input type="email" placeholder="Email Cliente" name="correo" onChange={actualizarState}/>
+                    <label>Direccion:</label>
+                    <input type="text" placeholder="Direccion Cliente" name="direccion" onChange={actualizarState}/>
                 </div>
 
                 <div class="campo">
-                    <label>Direccion:</label>
-                    <input type="text" placeholder="Direccion Cliente" name="direccion" onChange={actualizarState}/>
+                    <label>Celular:</label>
+                    <input type="text" placeholder="Celular Cliente" name="celular" onChange={actualizarState}/>
                 </div>
 
                 <div class="enviar">

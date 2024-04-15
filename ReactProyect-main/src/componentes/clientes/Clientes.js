@@ -34,18 +34,18 @@ function Clientes() {
 
             <ul class="listado-alumno">
                 {clientes.map(cliente =>
-                    <li class="alumno">
+                    <li class="alumno" key = {cliente.id_cliente}>
                         <div class="info-cliente">
-                            <p class="nombre">{cliente.FkUsuario}</p>
-                            <p class="carrera">{cliente.direccion}</p>
-                            <p>{cliente.celular}</p>
+                            <p class="nombre">{"ID usuario: " + cliente.FkUsuario}</p>
+                            <p>{"Direccion: " + cliente.direccion}</p>
+                            <p>{"Celular: " + cliente.celular}</p>
                         </div>
                         <div class="acciones">
-                            <a href="#" class="btn btn-azul">
-                                <i class="fas fa-pen-alt"></i>
+                            <Link to={"/editar-cliente/"+ cliente.id_cliente} className="btn btn-azul">
+                                <i className="fas fa-pen-alt"></i>
                                 Editar Cliente
-                            </a>
-                            <button type="button" class="btn btn-rojo btn-eliminar" onClick={() => deleteCliente(cliente.id_producto)}>
+                            </Link>
+                            <button type="button" class="btn btn-rojo btn-eliminar" onClick={() => deleteCliente(cliente.id_cliente)}>
                                 <i class="fas fa-times"></i>
                                 Eliminar Cliente
                             </button>
